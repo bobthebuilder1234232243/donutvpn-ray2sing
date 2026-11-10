@@ -1,4 +1,4 @@
-module github.com/hiddify/ray2sing
+module github.com/bobthebuilder1234232243/donutvpn-ray2sing
 
 go 1.27
 

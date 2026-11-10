@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/hiddify/ray2sing/ray2sing"
+	"github.com/bobthebuilder1234232243/donutvpn-ray2sing/ray2sing"
 	C "github.com/sagernet/sing-box/constant"
 	"github.com/sagernet/sing-box/experimental/libbox"
 	"github.com/sagernet/sing-box/option"

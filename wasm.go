@@ -6,7 +6,7 @@ package main
 import (
 	"syscall/js"
 
-	"github.com/hiddify/ray2sing/ray2sing"
+	"github.com/bobthebuilder1234232243/donutvpn-ray2sing/ray2sing"
 )
 
 func main() {

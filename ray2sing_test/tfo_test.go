@@ -3,7 +3,7 @@ package ray2sing_test
 import (
 	"testing"
 
-	"github.com/hiddify/ray2sing/ray2sing"
+	"github.com/bobthebuilder1234232243/donutvpn-ray2sing/ray2sing"
 )
 
 // tfo=1 turns TCP Fast Open on for the link; without it the dialer leaves it off.

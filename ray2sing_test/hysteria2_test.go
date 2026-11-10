@@ -3,7 +3,7 @@ package ray2sing_test
 import (
 	"testing"
 
-	"github.com/hiddify/ray2sing/ray2sing"
+	"github.com/bobthebuilder1234232243/donutvpn-ray2sing/ray2sing"
 )
 
 func TestHysteria2(t *testing.T) {

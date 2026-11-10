@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hiddify/ray2sing/ray2sing"
+	"github.com/bobthebuilder1234232243/donutvpn-ray2sing/ray2sing"
 	"github.com/sagernet/sing-box/experimental/libbox"
 )
 
