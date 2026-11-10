@@ -10,7 +10,7 @@ import (
 
 	C "github.com/sagernet/sing-box/constant"
 	T "github.com/sagernet/sing-box/option"
-	soaroutbound "github.com/sagernet/sing-box/protocol/hiddify/soar"
+	soaroutbound "github.com/sagernet/sing-box/protocol/donutvpn/soar"
 )
 
 // SoarSingbox reads a soar:// link into a soar outbound (a Soar client,

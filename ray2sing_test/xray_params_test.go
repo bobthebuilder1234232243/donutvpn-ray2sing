@@ -66,7 +66,7 @@ func TestRawHTTPHeaderOverTLS(t *testing.T) {
 		convertOne(t, "vless://"+testUUID+"@example.com:443?security=tls&sni=example.com&type=http&path=%2Fp&host=example.com#h2"), 0)
 }
 
-// Hiddify panel entries that only show usage/expiry are not servers
+// DonutVpn panel entries that only show usage/expiry are not servers
 func TestSubscriptionInfoEntryIsSkipped(t *testing.T) {
 	links := "trojan://1@20.59--2026.10.08.time:2059?sni=fake_ip_for_sub_link&security=tls#usage%20info\n" +
 		"vless://" + testUUID + "@example.com:443?security=tls&sni=example.com&type=tcp#real"

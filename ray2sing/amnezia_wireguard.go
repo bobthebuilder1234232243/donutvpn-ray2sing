@@ -9,7 +9,7 @@ import (
 	C "github.com/sagernet/sing-box/constant"
 	T "github.com/sagernet/sing-box/option"
 	"github.com/sagernet/sing/common/json/badoption"
-	"github.com/sagernet/wireguard-go/hiddify"
+	"github.com/sagernet/wireguard-go/donutvpn"
 )
 
 // AmneziaWG values that change only what the client sends before a handshake (junk packets,
@@ -23,7 +23,7 @@ import (
 // awgAsWireGuardNoise is the WireGuard noise that sends what awg sends before a handshake: i1–i5
 // (or the QUIC masquerade), then jc junk packets of jmin–jmax random bytes. ok is false when awg
 // changes the WireGuard packets themselves, or uses a tag that noise cannot build.
-func awgAsWireGuardNoise(awg T.AwgOptions) (noise hiddify.NoiseOptions, ok bool) {
+func awgAsWireGuardNoise(awg T.AwgOptions) (noise donutvpn.NoiseOptions, ok bool) {
 	if awg.S1 != 0 || awg.S2 != 0 || awg.S3 != 0 || awg.S4 != 0 || awg.HeaderProtectionKey != "" ||
 		awg.ContentPaddingAddition != "" || awg.RekeyAfterTime != "" || awg.RekeyTimeout != "" ||
 		awg.RejectAfterTime != "" || awg.KeepaliveTimeout != "" || awg.MaxHandshakeAttempts != "" ||
@@ -36,7 +36,7 @@ func awgAsWireGuardNoise(awg T.AwgOptions) (noise hiddify.NoiseOptions, ok bool)
 		}
 	}
 	packets := []string{awg.I1, awg.I2, awg.I3, awg.I4, awg.I5}
-	mode := hiddify.NoiseModeRaw
+	mode := donutvpn.NoiseModeRaw
 	if awg.IP != "" || awg.ID != "" {
 		if awg.I1 != "" {
 			return noise, false
@@ -46,28 +46,28 @@ func awgAsWireGuardNoise(awg T.AwgOptions) (noise hiddify.NoiseOptions, ok bool)
 				return noise, false
 			}
 			packets[0] = "<qi " + awg.ID + ">"
-		} else if _, ok := hiddify.NoisePresetByName(awg.IP); ok {
+		} else if _, ok := donutvpn.NoisePresetByName(awg.IP); ok {
 			mode = awg.IP // the preset's packets, then i2–i5 (see FakePacketOptions.WithPreset)
 		} else {
 			return noise, false
 		}
 	}
-	fake := hiddify.FakePacketOptions{Mode: mode}
+	fake := donutvpn.FakePacketOptions{Mode: mode}
 	for _, packet := range packets {
 		if packet == "" {
 			continue
 		}
-		if _, err := hiddify.ExpandPacket(packet); err != nil {
+		if _, err := donutvpn.ExpandPacket(packet); err != nil {
 			return noise, false
 		}
 		fake.Packets = append(fake.Packets, packet)
 	}
 	if awg.Jc > 0 && awg.Jmax > 0 {
-		fake.Count = hiddify.Range{From: int32(awg.Jc), To: int32(awg.Jc)}
-		fake.Size = hiddify.Range{From: int32(awg.Jmin), To: int32(awg.Jmax)}
+		fake.Count = donutvpn.Range{From: int32(awg.Jc), To: int32(awg.Jc)}
+		fake.Size = donutvpn.Range{From: int32(awg.Jmin), To: int32(awg.Jmax)}
 	}
-	fake.Enabled = len(fake.Packets) > 0 || fake.Count.To > 0 || mode != hiddify.NoiseModeRaw
-	return hiddify.NoiseOptions{FakePacket: fake}, true
+	fake.Enabled = len(fake.Packets) > 0 || fake.Count.To > 0 || mode != donutvpn.NoiseModeRaw
+	return donutvpn.NoiseOptions{FakePacket: fake}, true
 }
 
 func hasReserved(peers []T.WireGuardPeer) bool {

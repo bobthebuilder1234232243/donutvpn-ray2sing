@@ -7,7 +7,7 @@ import (
 
 // Xray writes the XHTTP extra in camelCase (xPaddingKey, scMaxEachPostBytes, noGRPCHeader, xmux's
 // hMaxRequestTimes, downloadSettings' tlsSettings.serverName...); every value reaches the sing-box
-// options, whose keys are snake_case. Header names are kept as written. hiddify-app#2479
+// options, whose keys are snake_case. Header names are kept as written. donutvpn-app#2479
 func TestXHTTPExtraCamelCase(t *testing.T) {
 	extra := `{"xPaddingHeader":"9267f8","xPaddingKey":"_826c26","xPaddingMethod":"tokenish","xPaddingObfsMode":true,` +
 		`"xPaddingPlacement":"header","xPaddingBytes":"250-950","scMaxEachPostBytes":"500000-1000000","noGRPCHeader":true,` +

@@ -47,7 +47,7 @@ func TestRawHTTPHeaders(t *testing.T) {
 }
 
 // keyshare=classical drops X25519MLKEM768 from the REALITY ClientHello: some DPI blocks the
-// two-segment hybrid ClientHello (hiddify-app#2439).
+// two-segment hybrid ClientHello (donutvpn-app#2439).
 func TestRealityKeyShare(t *testing.T) {
 	out, err := VlessSingbox("vless://uuid@1.2.3.4:443?security=reality&sni=z.com&fp=chrome&pbk=PUBKEY&sid=1bf7&type=tcp&keyshare=Classical#name")
 	if err != nil {

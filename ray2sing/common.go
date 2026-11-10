@@ -40,7 +40,7 @@ func getRealityOptions(decoded map[string]string) *T.OutboundRealityOptions {
 	}
 }
 
-// getRealityKeyShare reads keyshare (Hiddify only): "classical" drops the X25519MLKEM768 key share,
+// getRealityKeyShare reads keyshare (DonutVpn only): "classical" drops the X25519MLKEM768 key share,
 // whose ClientHello does not fit in one TCP segment and is blocked by some DPI; "hybrid" or empty
 // keeps it, which Xray servers from v26.9.8 require.
 func getRealityKeyShare(decoded map[string]string) string {

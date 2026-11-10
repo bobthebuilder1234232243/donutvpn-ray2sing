@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sagernet/sing-box/hiddify/finalmask"
+	"github.com/sagernet/sing-box/donutvpn/finalmask"
 	T "github.com/sagernet/sing-box/option"
 	E "github.com/sagernet/sing/common/exceptions"
 	sjson "github.com/sagernet/sing/common/json"

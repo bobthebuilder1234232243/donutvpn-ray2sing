@@ -274,7 +274,7 @@ func Ray2SingboxOptions(ctx context.Context, configs string, useXrayWhenPossible
 	return convertedData, err
 }
 
-// isSubscriptionInfoEntry reports Hiddify panel entries that only show the subscription's usage and
+// isSubscriptionInfoEntry reports DonutVpn panel entries that only show the subscription's usage and
 // expiry in their name (sni=fake_ip_for_sub_link); they are not servers, and the same data comes in
 // the subscription-userinfo header.
 func isSubscriptionInfoEntry(config string) bool {

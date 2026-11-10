@@ -76,7 +76,7 @@ type DownloadSettings struct {
 	Security        string         `json:"security,omitempty"`
 	TLSSettings     *TLSConfig     `json:"tls_settings"`
 	REALITYSettings *REALITYConfig `json:"reality_settings"`
-	// Xray/hiddifypanel nest the download leg's path/host/mode/headers here
+	// Xray/donutvpnpanel nest the download leg's path/host/mode/headers here
 	XHTTPSettings *option.V2RayXHTTPBaseOptions `json:"xhttp_settings,omitempty"`
 }
 
@@ -126,7 +126,7 @@ type REALITYConfig struct {
 	// Password      string `json:"password"`
 	PublicKey string `json:"public_key"`
 	ShortId   string `json:"short_id"`
-	KeyShare  string `json:"key_share"` // Hiddify only, see getRealityKeyShare
+	KeyShare  string `json:"key_share"` // DonutVpn only, see getRealityKeyShare
 	// Mldsa65Verify string `json:"mldsa65Verify"`
 	// SpiderX       string `json:"spiderX"`
 }

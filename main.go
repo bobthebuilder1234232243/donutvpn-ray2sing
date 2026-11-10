@@ -52,7 +52,7 @@ var examples = map[string][]string{
 		"wg://server.com:5319?publicKey=verypublicKeyss&privateKey=veryprivatekey&presharedKey=verysharedkey&ip=10.0.0.1&mtu=1380&keepalive=30&udp=1&reserved=0,0,0&ifp=5-10#direct%20WireGuard",
 	},
 	"warp": {
-		"#profile-title: Hiddify WARP\nwarp://p1@auto#Local -> warp://p2@auto#Remote",
+		"#profile-title: DonutVpn WARP\nwarp://p1@auto#Local -> warp://p2@auto#Remote",
 		"warp://key@host:1234/#WARPkey",
 		"warp://engage.cloudflareclient.com:2408#WARPnoKey",
 		"warp://key@engage.cloudflareclient.com:2408/?ifp=5-10#WARPparam",

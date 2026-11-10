@@ -3,15 +3,15 @@ package ray2sing
 import (
 	"strconv"
 
-	"github.com/sagernet/wireguard-go/hiddify"
+	"github.com/sagernet/wireguard-go/donutvpn"
 )
 
-func convertRange(s string) hiddify.Range {
-	r := hiddify.Range{}
+func convertRange(s string) donutvpn.Range {
+	r := donutvpn.Range{}
 	r.UnmarshalJSON([]byte(strconv.Quote(s)))
 	return r
 }
-func getWireGuardNoise(d map[string]string, addDefault bool) hiddify.NoiseOptions {
+func getWireGuardNoise(d map[string]string, addDefault bool) donutvpn.NoiseOptions {
 	fake_packet_count := convertRange(getOneOfN(d, "", "ifp", "wnoisecount"))
 
 	fake_packet_delay := convertRange(getOneOfN(d, "", "ifpd", "wnoisedelay"))
@@ -22,11 +22,11 @@ func getWireGuardNoise(d map[string]string, addDefault bool) hiddify.NoiseOption
 	if wnoise, ok := d["wnoise"]; ok {
 		switch wnoise { // Xray's wnoise
 		case "quic": // QUIC Initials
-			fake_packet_mode = hiddify.NoiseModeQUIC
+			fake_packet_mode = donutvpn.NoiseModeQUIC
 		case "random": // plain random bytes, with no header
-			fake_packet_mode = hiddify.NoiseModeRaw
+			fake_packet_mode = donutvpn.NoiseModeRaw
 		default: // a named preset: sip, dns, stun, quic-mimic, ...
-			if _, ok := hiddify.NoisePresetByName(wnoise); ok {
+			if _, ok := donutvpn.NoisePresetByName(wnoise); ok {
 				fake_packet_mode = wnoise
 			}
 		}
@@ -35,10 +35,10 @@ func getWireGuardNoise(d map[string]string, addDefault bool) hiddify.NoiseOption
 		if addDefault {
 			return defaultWireguardNoiseOptions()
 		}
-		return hiddify.NoiseOptions{}
+		return donutvpn.NoiseOptions{}
 	}
-	return hiddify.NoiseOptions{
-		FakePacket: hiddify.FakePacketOptions{
+	return donutvpn.NoiseOptions{
+		FakePacket: donutvpn.FakePacketOptions{
 			Enabled: true,
 			Count:   fake_packet_count,
 			Size:    fake_packet_size,
@@ -48,9 +48,9 @@ func getWireGuardNoise(d map[string]string, addDefault bool) hiddify.NoiseOption
 	}
 }
 
-func defaultWireguardNoiseOptions() hiddify.NoiseOptions {
-	return hiddify.NoiseOptions{
-		FakePacket: hiddify.FakePacketOptions{
+func defaultWireguardNoiseOptions() donutvpn.NoiseOptions {
+	return donutvpn.NoiseOptions{
+		FakePacket: donutvpn.FakePacketOptions{
 			Enabled: true,
 			Count:   convertRange("2-10"),
 			Size:    convertRange("30-50"),
